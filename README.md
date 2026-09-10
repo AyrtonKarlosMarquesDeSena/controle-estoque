@@ -10,7 +10,7 @@ Sistema de reposição de estoque para restaurante, desenvolvido em Django como 
 
 Itens com quantidade calculada zero ou negativa não entram na lista de compras.
 
-## Como instalar e rodar o projeto
+## Backend - Como instalar e rodar
 
 1. Clone o repositório:
 ```bash
@@ -56,13 +56,45 @@ Ingrediente.objects.create(
 )
 ```
 
-6. Gere a lista de compras:
+6. Gere a lista de compras pelo terminal:
 ```bash
 python manage.py gerar_lista_compras
 ```
 
+Ou acesse via API (com o servidor rodando):
+```bash
+python manage.py runserver
+```
+```
+http://127.0.0.1:8000/api/lista-compras/
+```
+
+## Frontend (React) - Como instalar e rodar
+
+O frontend consome a API do backend, então o Django precisa estar rodando (`python manage.py runserver`) ao mesmo tempo.
+
+1. Entre na pasta do frontend:
+```bash
+cd frontend
+```
+
+2. Instale as dependências:
+```bash
+npm install
+```
+
+3. Rode o servidor de desenvolvimento:
+```bash
+npm run dev
+```
+
+4. Acesse:
+```
+http://localhost:5173/
+```
+
 ## Tecnologias
 
-- Python
-- Django
+- Python / Django / Django REST Framework
 - SQLite
+- React (Vite)
