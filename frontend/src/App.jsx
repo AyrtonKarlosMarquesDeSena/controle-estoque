@@ -20,52 +20,51 @@ function App() {
     consumo_real: 0,
     houve_ruptura: false,
   });
+const buscarLista = () => {
+  fetch("https://controle-estoque-ei07.onrender.com/api/lista-compras/")
+    .then((response) => response.json())
+    .then((data) => setListaCompras(data));
+};
 
-  const buscarLista = () => {
-    fetch("http://127.0.0.1:8000/api/lista-compras/")
-      .then((response) => response.json())
-      .then((data) => setListaCompras(data));
-  };
+useEffect(() => {
+  buscarLista();
+}, []);
 
-  useEffect(() => {
-    buscarLista();
-  }, []);
+const handleChange = (campo, valor) => {
+  setForm((prev) => ({ ...prev, [campo]: valor }));
+};
 
-  const handleChange = (campo, valor) => {
-    setForm((prev) => ({ ...prev, [campo]: valor }));
-  };
+const handleSubmit = (e) => {
+  e.preventDefault();
+  setEnviando(true);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setEnviando(true);
-
-    fetch("http://127.0.0.1:8000/api/ingredientes/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
+  fetch("https://controle-estoque-ei07.onrender.com/api/ingredientes/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(form),
+  })
+    .then((response) => response.json())
+    .then(() => {
+      buscarLista();
+      setMostrarForm(false);
+      setForm({
+        nome: "",
+        meta: "",
+        estoque_atual: "",
+        unidade: "KG",
+        data_validade: "",
+        consumo_real: 0,
+        houve_ruptura: false,
+      });
     })
-      .then((response) => response.json())
-      .then(() => {
-        buscarLista();
-        setMostrarForm(false);
-        setForm({
-          nome: "",
-          meta: "",
-          estoque_atual: "",
-          unidade: "KG",
-          data_validade: "",
-          consumo_real: 0,
-          houve_ruptura: false,
-        });
-      })
-      .finally(() => setEnviando(false));
-  };
+    .finally(() => setEnviando(false));
+};
 
-  const handleDelete = (id) => {
-    fetch(`http://127.0.0.1:8000/api/ingredientes/${id}/`, {
-      method: "DELETE",
-    }).then(() => buscarLista());
-  };
+const handleDelete = (id) => {
+  fetch(`https://controle-estoque-ei07.onrender.com/api/ingredientes/${id}/`, {
+    method: "DELETE",
+  }).then(() => buscarLista());
+};
 
   return (
     <div className="pagina">
