@@ -2,6 +2,13 @@
 
 Sistema de reposição de estoque para restaurante, desenvolvido em Django como parte do processo seletivo.
 
+## 🔗 Links do projeto em produção
+
+- **Frontend (React):** https://controle-estoque-ayrton.netlify.app
+- **Backend / API (Django):** https://controle-estoque-ei07.onrender.com/api/lista-compras/
+
+> O backend está no plano gratuito do Render e pode "dormir" após um tempo sem uso — a primeira requisição pode demorar até 50 segundos para responder.
+
 ## Regras de negócio
 
 - **Caso normal:** compra a diferença entre a meta e o estoque atual (`meta - estoque_atual`).
@@ -10,7 +17,7 @@ Sistema de reposição de estoque para restaurante, desenvolvido em Django como 
 
 Itens com quantidade calculada zero ou negativa não entram na lista de compras.
 
-## Backend - Como instalar e rodar
+## Backend - Como instalar e rodar localmente
 
 1. Clone o repositório:
 ```bash
@@ -42,18 +49,9 @@ pip install -r requirements.txt
 python manage.py migrate
 ```
 
-5. (Opcional) Crie ingredientes de teste pelo shell do Django:
+5. (Opcional) Popule com ingredientes de exemplo:
 ```bash
-python manage.py shell
-```
-```python
-from estoque_app.models import Ingrediente
-from datetime import date
-
-Ingrediente.objects.create(
-    nome="Farinha", meta=20, estoque_atual=8, unidade="KG",
-    data_validade=date(2027, 1, 1), consumo_real=12, houve_ruptura=False
-)
+python manage.py popular_dados
 ```
 
 6. Gere a lista de compras pelo terminal:
@@ -69,26 +67,17 @@ python manage.py runserver
 http://127.0.0.1:8000/api/lista-compras/
 ```
 
-## Frontend (React) - Como instalar e rodar
+## Frontend (React) - Como instalar e rodar localmente
 
-O frontend consome a API do backend, então o Django precisa estar rodando (`python manage.py runserver`) ao mesmo tempo.
+O frontend consome a API do backend, então o Django precisa estar rodando ao mesmo tempo (ou edite `frontend/src/App.jsx` para apontar para o backend em produção).
 
-1. Entre na pasta do frontend:
 ```bash
 cd frontend
-```
-
-2. Instale as dependências:
-```bash
 npm install
-```
-
-3. Rode o servidor de desenvolvimento:
-```bash
 npm run dev
 ```
 
-4. Acesse:
+Acesse:
 ```
 http://localhost:5173/
 ```
@@ -98,3 +87,4 @@ http://localhost:5173/
 - Python / Django / Django REST Framework
 - SQLite
 - React (Vite)
+- Hospedagem: Render (backend) e Netlify (frontend)
