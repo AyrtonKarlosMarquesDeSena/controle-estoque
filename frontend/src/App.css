@@ -196,3 +196,104 @@ body {
 .botao-remover:hover {
   color: #c94040;
 }
+
+.pagina {
+  min-height: 100vh;
+  background: #1c1b18;
+  color: #ede8dd;
+  font-family: 'Georgia', serif;
+}
+
+/* NAVBAR */
+.navbar {
+  border-bottom: 1px solid #3a382f;
+  padding: 16px 20px;
+}
+
+.navbar-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.navbar-titulo {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.navbar-hamburguer {
+  background: transparent;
+  border: none;
+  color: #ede8dd;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: block;
+}
+
+.navbar-links {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 14px;
+  max-width: 480px;
+  margin-inline: auto;
+}
+
+.navbar-links.aberto {
+  display: flex;
+}
+
+.navbar-links a {
+  color: #9c9588;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.navbar-links a.ativo {
+  background: #242220;
+  color: #c9a227;
+}
+
+/* Telas maiores: menu sempre visível, sem hambúrguer */
+@media (min-width: 640px) {
+  .navbar-hamburguer {
+    display: none;
+  }
+
+  .navbar-links {
+    display: flex !important;
+    flex-direction: row;
+    gap: 8px;
+    margin-top: 0;
+  }
+}
+
+.mensagem-sucesso {
+  color: #7a8c6e;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+/* AJUSTES RESPONSIVOS GERAIS */
+@media (max-width: 480px) {
+  .pagina {
+    padding: 0;
+  }
+
+  .recibo {
+    padding: 24px 16px;
+    max-width: 100%;
+  }
+
+  .campo-linha {
+    flex-direction: column;
+  }
+
+  .recibo-topo h1 {
+    font-size: 1.8rem;
+  }
+}

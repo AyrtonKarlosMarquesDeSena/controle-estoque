@@ -1,0 +1,1 @@
+export const API_URL = "https://controle-estoque-ei07.onrender.com"
