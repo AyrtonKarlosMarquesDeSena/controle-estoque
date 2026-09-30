@@ -1,21 +1,22 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
-function Navbar() {
+function Header() {
   const [aberto, setAberto] = useState(false)
-
   const fechar = () => setAberto(false)
 
   return (
-    <nav className="navbar">
-      <div className="navbar-topo">
-        <span className="navbar-titulo">Estoque</span>
-        <button className="navbar-hamburguer" onClick={() => setAberto(!aberto)}>
-          ☰
-        </button>
-      </div>
+    <header className="header">
+      <NavLink to="/" className="logo" onClick={fechar}>
+        <span className="logo-icone">🧾</span>
+        <span className="logo-texto">Estoque</span>
+      </NavLink>
 
-      <div className={`navbar-links ${aberto ? 'aberto' : ''}`}>
+      <button className="navbar-hamburguer" onClick={() => setAberto(!aberto)}>
+        ☰
+      </button>
+
+      <nav className={`navbar-links ${aberto ? 'aberto' : ''}`}>
         <NavLink to="/" onClick={fechar} className={({ isActive }) => isActive ? 'ativo' : ''}>
           Lista
         </NavLink>
@@ -25,9 +26,9 @@ function Navbar() {
         <NavLink to="/editar" onClick={fechar} className={({ isActive }) => isActive ? 'ativo' : ''}>
           Atualizar
         </NavLink>
-      </div>
-    </nav>
+      </nav>
+    </header>
   )
 }
 
-export default Navbar
+export default Header

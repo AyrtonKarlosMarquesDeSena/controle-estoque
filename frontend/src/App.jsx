@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
+import Header from './components/Navbar'
+import Footer from './components/Footer'
 import Home from './pages/Home'
 import Adicionar from './pages/Adicionar'
 import Editar from './pages/Editar'
@@ -9,12 +10,15 @@ function App() {
   return (
     <BrowserRouter>
       <div className="pagina">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/adicionar" element={<Adicionar />} />
-          <Route path="/editar" element={<Editar />} />
-        </Routes>
+        <Header />
+        <main className="conteudo">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/adicionar" element={<Adicionar />} />
+            <Route path="/editar" element={<Editar />} />
+          </Routes>
+        </main>
+        <Footer />
       </div>
     </BrowserRouter>
   )
